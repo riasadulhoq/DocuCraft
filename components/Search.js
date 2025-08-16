@@ -1,6 +1,36 @@
-import SearchIcon from "./SearchIcon";
+"use client";
 
-export default function Search() {
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useDebounce } from "use-debounce";
+import SearchIcon from "./SearchIcon";
+import SearchResults from "./SearchResults";
+
+export default function Search({ docs }) {
+  const [searchTerm, setSearchTerm] = useState("");
+  console.log("Search term:", searchTerm);
+  const [searchResults, setSearchResults] = useState([]);
+  // console.log("Search results:", searchResults);
+  const [debouncedSearchResults] = useDebounce(searchResults, 1000);
+  console.log("Debounced Search results:", debouncedSearchResults);
+  const router = useRouter();
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    const matched = docs.filter((doc) => {
+      return doc.title.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    setSearchResults(matched);
+  };
+
+  const clearSearchTerm = (e) => {
+    e.preventDefault();
+    router.push(e.target.href);
+    setSearchTerm("");
+  };
+
   return (
     <div className="relative hidden lg:block lg:max-w-md lg:flex-auto">
       <button
@@ -10,6 +40,8 @@ export default function Search() {
         <SearchIcon />
         <input
           type="text"
+          value={searchTerm}
+          onChange={(e) => handleSearchChange(e)}
           placeholder="Search..."
           className="flex-1 focus:border-none focus:outline-none"
         />
@@ -18,6 +50,13 @@ export default function Search() {
           <kbd className="font-sans">K</kbd>
         </kbd>
       </button>
+      {searchTerm && searchTerm.trim().length > 0 && (
+        <SearchResults
+          searchTerm={searchTerm}
+          results={debouncedSearchResults}
+          clearSearchTerm={clearSearchTerm}
+        />
+      )}
     </div>
   );
 }

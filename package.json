@@ -15,11 +15,13 @@
     "react-dom": "^18",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
-    "tailwindcss-aspect-ratio": "^3.0.0"
+    "tailwindcss-aspect-ratio": "^3.0.0",
+    "use-debounce": "^10.0.5"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/typography": "^0.5.16",
+    "daisyui": "^5.0.50",
     "eslint": "^8",
     "eslint-config-next": "14.2.31",
     "postcss": "^8",
