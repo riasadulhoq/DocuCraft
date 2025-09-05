@@ -1,4 +1,39 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DocuCraft
+
+DocuCraft is a Markdown Documentation Generator built with [Next.js](https://nextjs.org/). It allows you to organize, search, and display documentation written in Markdown files, with support for categories, tags, and authors. The project features a modern UI, instant search, and dynamic navigation.
+
+## Features
+
+- Organize docs by categories, tags, and authors
+- Fast, debounced search with instant results
+- Responsive sidebar navigation
+- Markdown rendering with syntax highlighting
+- Dark mode support
+
+## Project Structure
+
+```
+docucraft/
+├── app/                # Next.js app directory (routing, layouts, pages)
+│   ├── layout.js
+│   ├── page.js
+│   └── error.js
+├── components/         # React components (Header, Sidebar, Search, etc.)
+│   ├── Header.js
+│   ├── Sidebar.js
+│   ├── Search.js
+│   └── ...
+├── docs/               # Markdown documentation files (*.md)
+├── lib/                # Library code (data fetching, markdown parsing)
+│   └── docs.js
+├── public/             # Static assets (favicon, images)
+├── styles/             # Global and component styles
+│   └── globals.css
+├── utils/              # Utility functions (grouping, filtering, etc.)
+│   └── doc-util.js
+├── README.md
+└── package.json
+```
 
 ## Getting Started
 
